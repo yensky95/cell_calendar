@@ -23,6 +23,8 @@ class CellCalendar extends HookConsumerWidget {
     this.events = const [],
     this.onPageChanged,
     this.onCellTapped,
+    this.colorDividerTop,
+    this.colorDividerRight,
     this.todayMarkColor = Colors.blue,
     this.todayTextColor = Colors.white,
     this.daysOfTheWeekBuilder,
@@ -47,6 +49,8 @@ class CellCalendar extends HookConsumerWidget {
   final void Function(DateTime)? onCellTapped;
   final Color todayMarkColor;
   final Color todayTextColor;
+  final Color? colorDividerTop;
+  final Color? colorDividerRight;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,6 +60,8 @@ class CellCalendar extends HookConsumerWidget {
         daysOfTheWeekBuilder: daysOfTheWeekBuilder,
         monthYearLabelBuilder: monthYearLabelBuilder,
         dateTextStyle: dateTextStyle,
+        colorDividerTop: colorDividerTop == null ? Theme.of(context).dividerColor : colorDividerTop!,
+        colorDividerRight: colorDividerRight == null ? Theme.of(context).dividerColor : colorDividerRight!,
         events: events,
         onPageChanged: onPageChanged,
         onCellTapped: onCellTapped,
@@ -74,6 +80,8 @@ class _CalendarPageView extends HookConsumerWidget {
     required this.monthYearLabelBuilder,
     required this.dateTextStyle,
     required this.events,
+    required this.colorDividerTop,
+    required this.colorDividerRight,
     required this.onPageChanged,
     required this.onCellTapped,
     required this.todayMarkColor,
@@ -96,6 +104,8 @@ class _CalendarPageView extends HookConsumerWidget {
   final void Function(DateTime)? onCellTapped;
   final Color todayMarkColor;
   final Color todayTextColor;
+  final Color colorDividerTop;
+  final Color colorDividerRight;
 
   DateTime _getFirstDay(DateTime dateTime) {
     final firstDayOfTheMonth = DateTime(dateTime.year, dateTime.month, 1);
@@ -118,6 +128,8 @@ class _CalendarPageView extends HookConsumerWidget {
                 daysOfTheWeekBuilder: daysOfTheWeekBuilder,
                 dateTextStyle: dateTextStyle,
                 onCellTapped: onCellTapped,
+                colorDividerTop: colorDividerTop,
+                colorDividerRight: colorDividerRight,
                 todayMarkColor: todayMarkColor,
                 todayTextColor: todayTextColor,
                 events: events,
@@ -154,6 +166,8 @@ class _CalendarPage extends StatelessWidget {
     required this.daysOfTheWeekBuilder,
     required this.dateTextStyle,
     required this.onCellTapped,
+    required this.colorDividerTop,
+    required this.colorDividerRight,
     required this.todayMarkColor,
     required this.todayTextColor,
     required this.events,
@@ -165,6 +179,8 @@ class _CalendarPage extends StatelessWidget {
   final void Function(DateTime)? onCellTapped;
   final Color todayMarkColor;
   final Color todayTextColor;
+  final Color colorDividerTop;
+  final Color colorDividerRight;
   final List<CalendarEvent> events;
 
   List<DateTime> _getCurrentDays(DateTime dateTime) {
@@ -199,6 +215,8 @@ class _CalendarPage extends StatelessWidget {
                   dates: days.getRange(index * 7, (index + 1) * 7).toList(),
                   dateTextStyle: dateTextStyle,
                   onCellTapped: onCellTapped,
+                  colorDividerTop: colorDividerTop,
+                  colorDividerRight: colorDividerRight,
                   todayMarkColor: todayMarkColor,
                   todayTextColor: todayTextColor,
                   events: events,

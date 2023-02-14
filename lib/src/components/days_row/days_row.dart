@@ -15,6 +15,8 @@ class DaysRow extends StatelessWidget {
     required this.dates,
     required this.dateTextStyle,
     required this.onCellTapped,
+    required this.colorDividerTop,
+    required this.colorDividerRight,
     required this.todayMarkColor,
     required this.todayTextColor,
     required this.events,
@@ -26,6 +28,8 @@ class DaysRow extends StatelessWidget {
   final void Function(DateTime)? onCellTapped;
   final Color todayMarkColor;
   final Color todayTextColor;
+  final Color colorDividerTop;
+  final Color colorDividerRight;
   final List<CalendarEvent> events;
 
   @override
@@ -38,6 +42,8 @@ class DaysRow extends StatelessWidget {
             visiblePageDate: visiblePageDate,
             dateTextStyle: dateTextStyle,
             onCellTapped: onCellTapped,
+            colorDividerTop: colorDividerTop,
+            colorDividerRight: colorDividerRight,
             todayMarkColor: todayMarkColor,
             todayTextColor: todayTextColor,
             events: events,
@@ -57,6 +63,8 @@ class _DayCell extends HookConsumerWidget {
     required this.visiblePageDate,
     required this.dateTextStyle,
     required this.onCellTapped,
+    required this.colorDividerTop,
+    required this.colorDividerRight,
     required this.todayMarkColor,
     required this.todayTextColor,
     required this.events,
@@ -68,6 +76,8 @@ class _DayCell extends HookConsumerWidget {
   final void Function(DateTime)? onCellTapped;
   final Color todayMarkColor;
   final Color todayTextColor;
+  final Color colorDividerTop;
+  final Color colorDividerRight;
   final List<CalendarEvent> events;
 
   @override
@@ -84,9 +94,9 @@ class _DayCell extends HookConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border(
-              top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
+              top: BorderSide(color: colorDividerTop, width: 1),
               right:
-                  BorderSide(color: Theme.of(context).dividerColor, width: 1),
+                  BorderSide(color: colorDividerRight, width: 1),
             ),
           ),
           child: MeasureSize(
