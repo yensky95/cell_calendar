@@ -95,8 +95,7 @@ class _DayCell extends HookConsumerWidget {
           decoration: BoxDecoration(
             border: Border(
               top: BorderSide(color: colorDividerTop, width: 1),
-              right:
-                  BorderSide(color: colorDividerRight, width: 1),
+              right: BorderSide(color: colorDividerRight, width: 1),
             ),
           ),
           child: MeasureSize(
@@ -203,7 +202,10 @@ class _DayLabel extends StatelessWidget {
         date.day.toString(),
         textAlign: TextAlign.center,
         style: textStyle.copyWith(
-          color: isCurrentMonth
+          color: (isCurrentMonth &&
+                  date.weekday != 6 &&
+                  date.weekday != 7 &&
+                  date.isAfter(DateTime.now()))
               ? textStyle.color
               : textStyle.color!.withOpacity(0.4),
         ),
